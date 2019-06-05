@@ -1,38 +1,54 @@
-# words to ignore when checking for frequency
-STOP_WORDS = [
-    'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he',
-    'i', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'were',
-    'will', 'with'
-]
+def print_word_freq(file):
+
+    # open file
+    with open(file) as file:
+        # convert file to string
+        string = file.read()
+
+        # remove punctuation and capitals; fix spacing
+        import re
+        string = string.strip()
+        string = re.sub(r'[^A-Za-z" "\n]', "", string)
+        string = string.replace("\n", " ")
+        string = string.lower()
+
+        # split string into list
+        words = string.split(" ")
+
+        # words to ignore when checking for frequency
+        STOP_WORDS = [
+            'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he',
+            'i', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'were',
+            'will', 'with'
+        ]
+
+        # create dictionary
+        word_dictionary = {}
+        for word in words:
+                if not word in STOP_WORDS and word != "":
+                    if word_dictionary.get(word) == None:
+                        word_dictionary[word] = 1
+                    else:
+                        word_dictionary[word] += 1
+        
+        # sort words alphabetically and convert to tuples
+        def sort_words(word_tuples):
+            return word_tuples[0]
+        
+        alphabetic_words = sorted(word_dictionary.items(), key=sort_words)
+
+        # sort tuples by word frequency and limit to 10 most frequent
+        def sort_frequency(word_tuples):
+            return word_tuples[1]
+
+        most_frequent = sorted(alphabetic_words, key=sort_frequency, reverse=True)[:10]
+        
+        # prints the results
+    # print(most_frequent)
+        
 
 
-
-# open file
-file = open("seneca_falls.txt")
-# convert file to string
-string = file.read()
-
-print(string)
-
-# remove punctuation and capitals; fix spacing
-import re
-string = re.sub(r'[^A-Za-z." "\n]', "", string)
-string = string.replace("\n", " ")
-string = string.lower()
-
-print(string)
-
-# split string
-words = string.split(" ")
-
-# print  as a test
-print(words)
-
-# calculate word frequency
-def print_word_freq(words):
-    """Read in `file` and print out the frequency of words in that file."""
-    pass
-   
+        
 
 
 
