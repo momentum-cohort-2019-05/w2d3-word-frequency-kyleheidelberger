@@ -44,26 +44,29 @@ def print_word_freq(file):
         most_frequent = sorted(alphabetic_words, key=sort_frequency, reverse=True)[:10]
 
         # find the length of the longest word for spacing graph
-        longest_word_length = 0
-        for word_tuple in most_frequent:
-            if len(word_tuple[0]) > longest_word_length:
-                longest_word_length = len(word_tuple[0])
+        # longest_word_length = 0
+        # for word_tuple in most_frequent:
+        #     if len(word_tuple[0]) > longest_word_length:
+        #         longest_word_length = len(word_tuple[0])
 
          # find length of string of longest number for spacing graph
-        longest_number_length = len(str(most_frequent[0][1]))
+        # longest_number_length = len(str(most_frequent[0][1]))
         
     # print bar graph
     for graph_tuple in most_frequent:
         # declare empty string
         graph_line = ""
         # add number of spaces to equal same characters on left side of graph and the word
-        graph_line += (" " * (longest_word_length - len(graph_tuple[0]))) + graph_tuple[0]
+        # graph_line += (" " * (longest_word_length - len(graph_tuple[0]))) + graph_tuple[0]
+        graph_line += '{:>20}'.format(graph_tuple[0])
         # add pipe and frequency
-        graph_line += " | " + str(graph_tuple[1])
+        graph_line += " | " + str(graph_tuple[1]) + "  " + ("*" * graph_tuple[1])
         # add white space and bar of asterisks for frequency
-        graph_line += (" " * (1 + longest_number_length - len(str(graph_tuple[1])))) + ("*" * graph_tuple[1])
+        # graph_line += (" " * (1 + longest_number_length - len(str(graph_tuple[1])))) + ("*" * graph_tuple[1])
+        # graph_line += '{:3}'.format
         # print the graph
         print(graph_line)
+
 
 
 # identifies valid file to run - don't mess with this!
