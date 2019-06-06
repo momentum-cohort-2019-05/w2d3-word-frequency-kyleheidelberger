@@ -42,19 +42,15 @@ def print_word_freq(file):
             return word_tuples[1]
 
         most_frequent = sorted(alphabetic_words, key=sort_frequency, reverse=True)[:10]
-        
-        # prints the results
-    # print(most_frequent)
 
+        # find the length of the longest word for spacing graph
         longest_word_length = 0
         for word_tuple in most_frequent:
             if len(word_tuple[0]) > longest_word_length:
                 longest_word_length = len(word_tuple[0])
-            # print(longest_word_length)
 
-    # find length of string of longest number
+         # find length of string of longest number for spacing graph
         longest_number_length = len(str(most_frequent[0][1]))
-        # print(longest_number_length)
         
     # print bar graph
     for graph_tuple in most_frequent:
