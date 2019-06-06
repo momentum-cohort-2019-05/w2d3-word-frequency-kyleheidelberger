@@ -45,11 +45,29 @@ def print_word_freq(file):
         
         # prints the results
     # print(most_frequent)
+
+        longest_word_length = 0
+        for word_tuple in most_frequent:
+            if len(word_tuple[0]) > longest_word_length:
+                longest_word_length = len(word_tuple[0])
+            # print(longest_word_length)
+
+    # find length of string of longest number
+        longest_number_length = len(str(most_frequent[0][1]))
+        # print(longest_number_length)
         
-
-
-        
-
+    # print bar graph
+    for graph_tuple in most_frequent:
+        # declare empty string
+        graph_line = ""
+        # add number of spaces to equal same characters on left side of graph and the word
+        graph_line += (" " * (longest_word_length - len(graph_tuple[0]))) + graph_tuple[0]
+        # add pipe and frequency
+        graph_line += " | " + str(graph_tuple[1])
+        # add white space and bar of asterisks for frequency
+        graph_line += (" " * (1 + longest_number_length - len(str(graph_tuple[1])))) + ("*" * graph_tuple[1])
+        # print the graph
+        print(graph_line)
 
 
 # identifies valid file to run - don't mess with this!
